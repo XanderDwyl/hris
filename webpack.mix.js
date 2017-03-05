@@ -11,5 +11,12 @@ const { mix } = require('laravel-mix');
  |
  */
 
+var bootstrapPath = 'node_modules/bootstrap-sass/assets';
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .sourceMaps()
+    .sass('resources/assets/sass/app.scss', 'public/css')
+    .copy(bootstrapPath + '/fonts/bootstrap', 'public/fonts')
+    .browserSync({
+      proxy: 'http://localhost'
+    })
+    .disableNotifications();
